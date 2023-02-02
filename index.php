@@ -14,19 +14,18 @@
 			<a href="#addnew" class="btn btn-primary" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span> Novo</a>
             <?php 
 
-                session_start();
+			session_start();
 
-                if(isset($_SESSION['message'])) {  ?>
-                   
-                    <div class="alert alert-info text-center" style="margin-top:20px;">
-                        <?= $_SESSION['message']; ?>
-                    </div>
+			if (isset($_SESSION['message'])): ?>
+				
+				<div class="alert alert-info text-center" style="margin-top:20px;">
+					<?= $_SESSION['message']; ?>
+				</div>
 
-                    <?php
+				<?php unset($_SESSION['message']);
 
-                    unset($_SESSION['message']);
-                }
-            ?>
+			endif; ?>
+
 			<table class="table table-bordered table-striped" style="margin-top:20px;">
 				<thead">
 					<th class="text-center">#</th>
@@ -38,34 +37,33 @@
 				<tbody>
 					<?php
 						
-						require_once './config/Connection.php';
+					require_once './config/Connection.php';
 
-						$database = new Connection();
-    					$db = $database->open();
+					$database = new Connection();
+					$db = $database->open();
 
-						try{	
-						    $sql = 'SELECT * FROM contacts';
-						    foreach ($db->query($sql) as $row) { ?>
-						    	
-						    	<tr>
-						    		<td><?php echo $row['id']; ?></td>
-						    		<td><?php echo $row['name']; ?></td>
-						    		<td><?php echo $row['phone']; ?></td>
-						    		<td><?php echo $row['cpf']; ?></td>
-						    		<td>
-						    			<a href="#edit_<?= $row['id']; ?>" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Editar</a>
-						    			<a href="#delete_<?= $row['id']; ?>" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Excluir</a>
-						    		</td>
+					try {	
+						$sql = 'SELECT * FROM contacts';
+						
+						foreach ($db->query($sql) as $row): ?>
+							<tr>
+								<td><?php echo $row['id']; ?></td>
+								<td><?php echo $row['name']; ?></td>
+								<td><?php echo $row['phone']; ?></td>
+								<td><?php echo $row['cpf']; ?></td>
+								<td>
+									<a href="#edit_<?= $row['id']; ?>" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+									<a href="#delete_<?= $row['id']; ?>" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Excluir</a>
+								</td>
+								<?php require './modals/edit_delete_modal.php'; ?>
+							</tr>
+						<?php endforeach;
 
-						    		<?php require './modals/edit_delete_modal.php'; ?>
-						    	</tr>
-						    	<?php 
-						    }
-						} catch(PDOException $e){
-							echo "OPS! Falha na conexão: " . $e->getMessage();
-						}
+					} catch(PDOException $e) {
+						echo "OPS! Falha na conexão: " . $e->getMessage();
+					}
 
-						$database->close();
+					$database->close();
 
 					?>
 				</tbody>
