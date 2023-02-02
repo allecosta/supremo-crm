@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
 			<div class="container-fluid">
-			<form method="POST" action="add.php">
+			<form method="POST" action="add.php" autocomplete="off">
 				<div class="row form-group">
 					<div class="col-sm-2">
 						<label class="control-label" style="position:relative; top:7px;">Nome:</label>
