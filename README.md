@@ -16,20 +16,6 @@ git clone https://github.com/allecosta/supremo-crm
 - Download: [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
 
-*Navegue até o diretório onde está localizado o projeto*
-
-```
-cd supremo-crm
-
-```
-
-*Quando estiver na pasta do projeto, execute o comando para iniciar o servidor PHP*
-
-```
-php -S localhost:8000
-
-```
-
 *Crie um banco de dados. Após concluir a criação do banco, execute o script SQL para criar a tabela.*
 
 ```
@@ -41,6 +27,21 @@ CREATE TABLE contacts (
     phone VARCHAR(20) NOT NULL,
     cpf VARCHAR(14) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+```
+*OBS: Para acessar o banco de dados, é necessario preencher as credenciais de autenticação (usuário e senha), no arquivo config/Connection.php*
+
+*Navegue até o diretório onde está localizado o projeto*
+
+```
+cd supremo-crm
+
+```
+
+*Quando estiver na pasta do projeto, execute o comando para iniciar o servidor PHP*
+
+```
+php -S localhost:8000
 
 ```
 
