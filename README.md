@@ -1,7 +1,7 @@
 # Desafio Técnico - Supremo CRM
 
 <h2 align="center">
-  <img src="/readme/media.gif">
+  <img src="/media/readme.gif">
 </h2>
 
 
